@@ -1,0 +1,18 @@
+<launch>
+    <node pkg="octomap_server" type="octomap_server_node" name="octomap_server" output="screen">
+        <param name="resolution" value="0.05" />
+        <param name="frame_id" type="string" value="/odom" />
+        <param name="sensor_model/max_range" value="3.8" />
+        <param name="latch" value="true" />
+        <param name="filter_ground" value="true" />
+
+        <remap from="cloud_in" to="/camera/depth/points" />
+        <remap from="projected_map" to="map" />
+    </node>
+
+    <node pkg="evaluator" type="evaluator_node" name="evaluator" output="screen">
+        <remap from="octomap" to="/octomap_full" />
+        <remap from="odometry" to="/odom" />
+        <remap from="imu" to="/mobile_base/sensors/imu_data" />
+    </node>
+</launch>

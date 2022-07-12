@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="evaluator" type="evaluator_node" name="evaluator" output="screen">
+            <remap from="octomap" to="/octomap_full" />
+            <remap from="odometry" to="/odom" />
+            <remap from="imu" to="/mobile_base/sensors/imu_data" />
+    </node>
+</launch>
